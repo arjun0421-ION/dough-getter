@@ -29,7 +29,7 @@ export default function CommunityFeed({ posts, userId, activeTopic, activeSort }
   };
 
   return (
-    <div className="flex gap-6">
+    <div className="flex flex-col md:flex-row gap-6">
       <TopicSidebar activeTopic={activeTopic} />
 
       <div className="flex-1 min-w-0 space-y-4">

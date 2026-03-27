@@ -6,6 +6,7 @@ import { usePathname, useRouter } from "next/navigation";
 import Logo from "@/components/ui/Logo";
 import Avatar from "@/components/ui/Avatar";
 import { createClient } from "@/lib/supabase/client";
+import { LogOut } from "lucide-react";
 
 interface AppShellProps {
   children: React.ReactNode;
@@ -155,11 +156,21 @@ export default function AppShell({ children, user }: AppShellProps) {
         {/* Mobile top bar */}
         <header className="md:hidden sticky top-0 z-30 bg-white/80 backdrop-blur-md border-b border-border px-4 h-14 flex items-center justify-between">
           <Logo size="sm" showText={false} />
-          <Avatar
-            src={user?.avatar_url}
-            name={user?.full_name || user?.email || "User"}
-            size="sm"
-          />
+          <div className="flex items-center gap-2">
+            <button
+              onClick={handleLogout}
+              disabled={loggingOut}
+              title="Log out"
+              className="p-2 text-text-light hover:text-red-500 transition-colors rounded-lg hover:bg-red-50"
+            >
+              <LogOut className="w-4 h-4" />
+            </button>
+            <Avatar
+              src={user?.avatar_url}
+              name={user?.full_name || user?.email || "User"}
+              size="sm"
+            />
+          </div>
         </header>
 
         {/* Page content */}
